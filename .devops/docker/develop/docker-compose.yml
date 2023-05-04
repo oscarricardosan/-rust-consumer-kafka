@@ -11,6 +11,11 @@ services:
         networks:
             - app-network
             - kafka-network
+        logging:
+          driver: loki
+          options:
+            loki-url: "http://10.0.0.3:3100/loki/api/v1/push"
+
 networks:
     app-network:
         driver: bridge
