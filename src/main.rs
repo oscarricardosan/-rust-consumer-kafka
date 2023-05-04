@@ -73,11 +73,11 @@ fn consume_messages(group: String, topic: String, brokers: Vec<String>) -> Resul
                 let data= str::from_utf8(m.value).unwrap().to_string();
 
                 tracing::info!(
-                task = "rust-kafka-consumer",
-                result = "success",
-                message,
-                data = data
-            );
+                    task = "rust-kafka-consumer",
+                    result = "success",
+                    message,
+                    data = data
+                );
             }
             let _ = con.consume_messageset(ms);
         }
