@@ -11,8 +11,20 @@ services:
         networks:
             - app-network
             - kafka-network
+            - cockroach-network
+
+    kafka-rust-consumer-promtail:
+        container_name: kafka-rust-consumer-promtail
+        image: grafana/promtail:2.8.0
+        volumes:
+            - ../../../log:/var/log
+            - ./promtail_config.yml:/etc/promtail/config.yml
+        command: -config.file=/etc/promtail/config.yml
+
 networks:
     app-network:
         driver: bridge
     kafka-network:
+        external: true
+    cockroach-network:
         external: true
